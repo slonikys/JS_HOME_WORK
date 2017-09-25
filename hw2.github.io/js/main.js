@@ -4,7 +4,7 @@ var p = document.getElementById('new'),
 function showArrElements() {
   p.innerHTML = "<hr>";
   for (var i = 0; i < arr.length; i++) {
-    p.innerHTML +=" " + arr[i] + " <br>";
+    p.innerHTML +=" " + arr[i] + " ";
     console.log(arr[i])
   }
 }
