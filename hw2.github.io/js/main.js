@@ -1,10 +1,11 @@
 var p = document.getElementById('new'),
-  arr = [];
+  arr = ['Dima','all','is','fixed'];
 
 function showArrElements() {
   p.innerHTML = "<hr>";
   for (var i = 0; i < arr.length; i++) {
-    p.innerHTML += +arr[i] + " <br>";
+    p.innerHTML +=" " + arr[i] + " <br>";
+    console.log(arr[i])
   }
 }
 
@@ -23,7 +24,8 @@ function push() {
     p.innerHTML = " Не вводите БУКВЫ в индекс только числа )";
   } else if (index > (arr.length - 1)) {
     arr[(arr.length - 1) + (index - (arr.length - 1))] = value;
-  }
+  } else {
   return arr[index] = value;
-
+}
+console.log(value);
 }
