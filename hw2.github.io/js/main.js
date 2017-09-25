@@ -2,12 +2,9 @@ var p = document.getElementById('new'),
   arr = ['Dima','all','is','fixed'];
 
 function showArrElements() {
-  p.innerHTML = "<hr>";
-  for (var i = 0; i < arr.length; i++) {
-    p.innerHTML +=" " + arr[i] + " ";
-    console.log(arr[i])
+  p.innerHTML = "<hr>" + "<br>" + arr;
   }
-}
+
 
 function pop() {
   arr.pop();
