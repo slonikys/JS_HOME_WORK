@@ -4,25 +4,26 @@ var p = document.getElementById('new'),
 function showArrElements() {
   p.innerHTML = "<hr>" + "<br>" + arr;
   }
-
+showArrElements();
 
 function pop() {
   arr.pop();
+  showArrElements();
 }
 
 function shift() {
   arr.shift();
+  showArrElements();
 }
 
-function push() {
+function addby() {
   var value = document.getElementById('value').value,
     index = document.getElementById('index').value;
-  if (isNaN(index)) {
-    p.innerHTML = " Не вводите БУКВЫ в индекс только числа )";
-  } else if (index > (arr.length - 1)) {
-    arr[(arr.length - 1) + (index - (arr.length - 1))] = value;
-  } else {
-  return arr[index] = value;
+  arr[index] = value;
+showArrElements();
 }
-console.log(value);
+function push () {
+   var value = document.getElementById('value').value;
+  arr.push(value);
+  showArrElements();
 }
