@@ -1,0 +1,11 @@
+img{
+	width: 100px;
+	height: 100px;
+	margin-right: 50px;
+}
+.red {
+	background-color: #FB0000;
+}
+#clickcount {
+	margin-top: 10px;
+}
