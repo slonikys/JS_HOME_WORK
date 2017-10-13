@@ -24,7 +24,7 @@ function GiveTagPnumber() {
     var arrayOfTag = document.getElementsByTagName('p'),
         i;
     for (i = 0; i < arrayOfTag.length; i++) {
-        arrayOfTag[i].innerHTML = (i) + arrayOfTag[i].innerHTML;
+        arrayOfTag[i].innerHTML = (i) + " " + arrayOfTag[i].innerHTML;
     }
 }
 // Task4
@@ -41,67 +41,106 @@ function counter() {
     result.innerHTML = count + " : times u click button";
 }
 // Task 5
-function pow(a, b) {
-    return Math.pow(a, b);
+document.querySelector('#task6').addEventListener('click', pow);
+
+function pow() {
+    var a = document.getElementById("firstNumber").value,
+        b = document.getElementById("secondNumber").value;
+    if (isNaN(a) || isNaN(b)) {
+        resulTask6.innerHTML = " Не вводите БУКВЫ только числа )";
+    } else {
+        resulTask6.innerHTML = Math.pow(a, b);
+    }
 }
-alert(pow(2, 5));
 // Task 6
 
 document.querySelector('#button6').addEventListener('click', textDecotation);
 
 function textDecotation() {
     var someTag = document.getElementById('tag').value,
-     tagName = document.querySelectorAll(someTag);
+        tagName = document.querySelectorAll(someTag);
     tagName.forEach(function(elem) {
         elem.style.textDecoration = "underline";
     });
 }
 // Task 7
-function AgeVerification(age) {
-    if (age < 16) {
-        alert('“вы еще молоды”');
+var ageBox = document.querySelector('#ageReturn');
+submitSome = document.querySelector('#SubmitB');
+
+function AgeVerification() {
+    var first = '“вы еще молоды”',
+        second = '«добро пожаловать»',
+        someAge2 = document.querySelector('#Age').value;
+    if (someAge2 <= 16) {
+        return first;
     } else {
-        alert('«добро пожаловать»');
+        return second;
     }
 }
+submitSome.onclick = function() {
+    ageBox.innerHTML = AgeVerification();
+};
+
 // Task 8
-function AgeVerification2(age) {
-    if (age === undefined || isNaN(age)) {
-        alert('“Введите возраст”');
-    } else if (age < 16) {
-        alert('“вы еще молоды”');
+var ageBox = document.querySelector('#ageReturnSecond');
+secondSubmit = document.querySelector('#SubmitButtonSecond');
+
+function AgeVerification() {
+    var first = '“вы еще молоды”',
+        second = '«добро пожаловать»',
+        third = 'Введите возраст ',
+        ageTaskSecond = document.querySelector('#ageTask').value;
+    if (isNaN(ageTaskSecond) || ageTaskSecond == "") {
+        return third;
+    } else if (ageTaskSecond <= 16) {
+        return first;
     } else {
-        alert('«добро пожаловать»');
+        return second;
     }
 }
+secondSubmit.onclick = function() {
+    ageBox.innerHTML = AgeVerification();
+};
 //Task 9
-var someArray = [1, 2, 3, 4, 5];
+var someArray = [1, 2, 3, 4, 5],
+    buttonSubmitTask = document.querySelector('#arrShow'),
+    buttonSubmitTaskSecond = document.querySelector('#arrShow2');
 
 function arrayLength(arg) {
     if (arg === undefined) {
-        alert('Error');
+        return ('Error');
     } else {
-        alert(arg.length);
+        return (arg.length);
     }
 }
-arrayLength(someArray);
-arrayLength();
+buttonSubmitTask.onclick = function() {
+    arrLengshow.innerHTML = arrayLength(someArray);
+};
+buttonSubmitTaskSecond.onclick = function() {
+    arrLengshow.innerHTML = arrayLength();
+};
 // Task 10
-function returnSomeNumber(arg) {
-    if (arg < 7) {
-        alert('число меньше 7');
-    } else if (arg > 10) {
-        alert(arg *= arg);
-    } else if (arg == 8) {
-        alert(--arg);
-    } else if (arg == 9) {
-        alert(--arg);
+var submit = document.querySelector('#submit'),
+    counterResult = document.querySelector('#numberResult');
+
+function returnSomeNumber() {
+    var task10 = parseInt(document.querySelector('#task10').value);
+    if (task10 <= 7) {
+        return ('число меньше 7');
+    } else if (task10 >= 10) {
+        return (task10 *= task10);
+    } else {
+        return (--task10);
     }
 }
+submit.onclick = function() {
+    counterResult.innerHTML = returnSomeNumber();
+};
 // Task 11
 var someGuessNumber = Math.round(Math.random() * 10),
     tryCounter = 0,
-    counterRes = document.getElementById('counterResult');
+    counterRes = document.getElementById('counterResult'),
+    guessThisNumber = document.querySelector('#guess');
 
 function guessNumber() {
     var someNumber = document.querySelector('#task11').value;
@@ -114,9 +153,10 @@ function guessNumber() {
     } else {
         alert('УГАДАЛ!!!!');
         ++tryCounter;
-        counterRes.innerHTML = 'Ты угадал с: ' + tryCounter + ' раза';
+        counterRes.innerHTML = 'Ты угадал с: ' + tryCounter + '-го раза';
 
     }
 }
-document.querySelector('#guess').addEventListener('click', guessNumber);
+guessThisNumber.onclick = (guessNumber);
+
 console.log(someGuessNumber);
