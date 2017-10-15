@@ -14,7 +14,7 @@ function ChangeImgBoxShadow() {
     var arrayOfTagImg = document.getElementsByTagName('img'),
         i;
     for (i = 0; i < arrayOfTagImg.length; i++) {
-        arrayOfTagImg[i].style.boxShadow = "10px 10px 10px 10px rgba(0,0,0,0.75)";
+        arrayOfTagImg[i].classList.toggle('boxshadow');
     }
 }
 // Task3
@@ -30,14 +30,14 @@ function GiveTagPnumber() {
 // Task4
 var count = 0,
     result = document.querySelector('#clickcount'),
-    counters = document.querySelectorAll('.task4');
+    counters = document.querySelectorAll('button');
 
 counters.forEach(function(elem) {
     elem.addEventListener('click', counter);
 });
 
 function counter() {
-    ++count;
+    count++;
     result.innerHTML = count + " : times u click button";
 }
 // Task 5
@@ -67,7 +67,7 @@ function textDecotation() {
 var ageBox = document.querySelector('#ageReturn');
 submitSome = document.querySelector('#SubmitB');
 
-function AgeVerification() {
+function AgeVerificationFirst() {
     var first = '“вы еще молоды”',
         second = '«добро пожаловать»',
         someAge2 = document.querySelector('#Age').value;
@@ -78,14 +78,14 @@ function AgeVerification() {
     }
 }
 submitSome.onclick = function() {
-    ageBox.innerHTML = AgeVerification();
+    ageBox.innerHTML = AgeVerificationFirst();
 };
 
 // Task 8
-var ageBox = document.querySelector('#ageReturnSecond');
+var ageRetBox = document.querySelector('#ageReturnSecond');
 secondSubmit = document.querySelector('#SubmitButtonSecond');
 
-function AgeVerification() {
+function AgeVerificationSecond() {
     var first = '“вы еще молоды”',
         second = '«добро пожаловать»',
         third = 'Введите возраст ',
@@ -99,7 +99,7 @@ function AgeVerification() {
     }
 }
 secondSubmit.onclick = function() {
-    ageBox.innerHTML = AgeVerification();
+    ageRetBox.innerHTML = AgeVerificationSecond();
 };
 //Task 9
 var someArray = [1, 2, 3, 4, 5],
