@@ -156,7 +156,7 @@ function guessNumber() {
             break;
         case someNumber == someGuessNumber:
             counterRes.innerHTML = 'Угадал с: ' + tryCounter + 'раза';
-            tryCounter++;
+            againButton.classList.add('two');
             break;
     }
     switch (tryCounter) {
