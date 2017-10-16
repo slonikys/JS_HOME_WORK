@@ -126,7 +126,7 @@ var submit = document.querySelector('#submit'),
 function returnSomeNumber() {
     var task10 = parseInt(document.querySelector('#task10').value);
     if (task10 <= 7) {
-        return ('число меньше 7');
+        return ('число рано или меньше 7');
     } else if (task10 >= 10) {
         return (task10 *= task10);
     } else {
