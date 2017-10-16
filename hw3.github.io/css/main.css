@@ -12,3 +12,10 @@ img{
 .boxshadow {
 	box-shadow: 10px 10px 10px 10px rgba(0,0,0,0.75);
 }
+.one {
+ opacity: 0;
+transition: all 1s;
+}
+.two {
+	opacity: 1;
+}

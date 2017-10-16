@@ -140,23 +140,42 @@ submit.onclick = function() {
 var someGuessNumber = Math.round(Math.random() * 10),
     tryCounter = 0,
     counterRes = document.getElementById('counterResult'),
-    guessThisNumber = document.querySelector('#guess');
+    guessThisNumber = document.querySelector('#guess'),
+    againButton = document.querySelector('#again');
 
 function guessNumber() {
     var someNumber = document.querySelector('#task11').value;
-    if (someNumber < someGuessNumber) {
-        alert('Введите число больше!');
-        ++tryCounter;
-    } else if (someNumber > someGuessNumber) {
-        alert('Введите число меньше!');
-        ++tryCounter;
-    } else {
-        alert('УГАДАЛ!!!!');
-        ++tryCounter;
-        counterRes.innerHTML = 'Ты угадал с: ' + tryCounter + '-го раза';
-
+    switch (someGuessNumber > someNumber || someGuessNumber < someNumber || someGuessNumber == someNumber) {
+        case someGuessNumber < someNumber:
+            counterRes.innerHTML = 'Загаданое число меньше';
+            tryCounter++;
+            break;
+        case someGuessNumber > someNumber:
+            counterRes.innerHTML = 'Загаданое число Больше';
+            tryCounter++;
+            break;
+        case someNumber == someGuessNumber:
+            counterRes.innerHTML = 'Угадал с: ' + tryCounter + 'раза';
+            tryCounter++;
+            break;
+    }
+    switch (tryCounter) {
+        case 1:
+        case 2:
+            break;
+        case 3:
+        case tryCounter>4:
+            againButton.classList.add('two');
+            counterRes.innerHTML = 'Не угадал пробуй еще! Загаданое число : ' + someGuessNumber;
+            break;
+            default:
+            againButton.classList.add('two');
+            counterRes.innerHTML = 'Не угадал пробуй еще! Загаданое число : ' + someGuessNumber;
     }
 }
+againButton.onclick = function() {
+    window.location.reload(true);
+};
 guessThisNumber.onclick = (guessNumber);
 
 console.log(someGuessNumber);
