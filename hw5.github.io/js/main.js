@@ -1,8 +1,23 @@
   //task1
   var field = document.getElementById('field');
-  field.onmousemove = function(e) {
-      document.getElementById('coords').innerHTML = "по x : " + e.clientX + ' , по Y: ' + e.clientY;
-  };
+
+function getCoordinates(event){
+  let answer = document.querySelector('#coords');
+  answer.innerHTML = 'X: ' + event.clientX + ', Y: ' + event.clientY;
+
+}
+
+let block = document.querySelector('#field');
+block.addEventListener('mousemove', getCoordinates);
+
+
+
+
+
+
+  // field.onmousemove = function(e) {
+  //     document.getElementById('coords').innerHTML = "по x : " + e.clientX + ' , по Y: ' + e.clientY;
+  // };
   //task2
   var openF = document.querySelector('#task2');
   openF.addEventListener('dblclick', openThisFolder);
