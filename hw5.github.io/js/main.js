@@ -1,10 +1,9 @@
   //task1
   var field = document.getElementById('field');
-
+  var answer = document.querySelector('#coords');
+  var block = document.querySelector('#field');
 function getCoordinates(event){
-  let answer = document.querySelector('#coords');
-  answer.innerHTML = 'X: ' + event.clientX + ', Y: ' + event.clientY;
-
+    answer.innerHTML = 'X: ' + event.clientX + ', Y: ' + event.clientY;
 }
 
 let block = document.querySelector('#field');
@@ -39,15 +38,7 @@ block.addEventListener('mousemove', getCoordinates);
       block.forEach(function(elem) {
           elem.addEventListener('mouseover', doCircle);
           elem.addEventListener('mouseout', backtoblock);
-      });
-
-      function doCircle() {
-          this.classList.add('circle');
-      }
-
-      function backtoblock() {
-          this.classList.remove('circle');
-      }
+      })
   }
   button3.addEventListener('click', createblock);
   // Task 4
