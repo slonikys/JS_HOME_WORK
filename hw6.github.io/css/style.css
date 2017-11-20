@@ -1,0 +1,31 @@
+body {
+  background: linear-gradient(to right, rgba(82, 82, 82, 1) 0%, rgba(87, 87, 87, 1) 35%, rgba(56, 56, 56, 1) 61%, rgba(15, 15, 15, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#525252', endColorstr='#0f0f0f', GradientType=1);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#js-add-input, #colect, #js-arrPushButton {
+  display: block;
+  margin: 10px auto;
+}
+
+.box__btn {
+  margin-left: 10px;
+}
+
+.text_input {
+  margin: 3px;
+}
+
+.selected {
+  color: red;
+}
+
+li {
+  cursor: pointer;
+}
