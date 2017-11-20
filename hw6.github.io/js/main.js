@@ -41,38 +41,34 @@ const collectInputValue = () => {
   let value = "";
   textArea.innerHTML = "";
 
+  const connector = (element, index, length) => {
+    if (element.value == "") {
+      textArea.innerHTML = "";
+      element.classList.add('empty');
+      alert(`Пустой ${index+1} инпут`);
+      return false;
+    } else {
+      length - 1 === index ?
+        textArea.innerHTML += ` ${element.value}` :
+        textArea.innerHTML += ` ${element.value} --\&\&--`;
+      element.classList.remove('empty');
+      return true;
+    }
+  }
+
   if (radioButton[0].checked) {
 
     for (let i = 0; i < inputArr.length; i++) {
-      if (inputArr[i].value == "") {
-        textArea.innerHTML = "";
-        inputArr[i].style.outlineColor = 'red';
-        inputArr[i].style.outlineWidth = '2px';
-        inputArr[i].style.outlineStyle = 'solid';
-        alert(`Пустой ${i+1} инпут`);
+      if (!connector(inputArr[i], i, inputArr.length)) {
         break;
-      } else {
-        textArea.innerHTML += ` ${inputArr[i].value} --\&\&--`;
-        inputArr[i].style = '';
-
       }
     }
 
   } else if (radioButton[1].checked) {
     for (let i = 0; i < inputArr.length; i++) {
       if (i % 2 != 0) {
-        if (inputArr[i].value == "") {
-          textArea.innerHTML = "";
-          inputArr[i].style.outlineColor = 'red';
-          inputArr[i].style.outlineWidth = '2px';
-          inputArr[i].style.outlineStyle = 'solid';
-          alert(`Пустой ${i+1} инпут`);
-          return;
-        } else {
-          textArea.innerHTML += ` ${inputArr[i].value} --\&\&--`;
-          inputArr[i].style.outlineColor = '';
-          inputArr[i].style.outlineWidth = '';
-          inputArr[i].style.outlineStyle = '';
+        if (!connector(inputArr[i], i, inputArr.length)) {
+          break;
         }
       }
     };
@@ -80,18 +76,8 @@ const collectInputValue = () => {
   } else {
     for (let i = 0; i < inputArr.length; i++) {
       if (i % 2 == 0) {
-        if (inputArr[i].value == "") {
-          textArea.innerHTML = "";
-          inputArr[i].style.outlineColor = 'red';
-          inputArr[i].style.outlineWidth = '2px';
-          inputArr[i].style.outlineStyle = 'solid';
-          alert(`Пустой ${i+1} инпут`);
-          return;
-        } else {
-          textArea.innerHTML += ` ${inputArr[i].value} --\&\&--`;
-          inputArr[i].style.outlineColor = '';
-          inputArr[i].style.outlineWidth = '';
-          inputArr[i].style.outlineStyle = '';
+        if (!connector(inputArr[i], i, inputArr.length)) {
+          break;
         }
       }
     };
@@ -101,7 +87,6 @@ const collectInputValue = () => {
 collectButton.addEventListener('click', collectInputValue);
 
 // Task2
-debugger;
 const currentBlock = document.querySelector('.task2');
 const addInput = currentBlock.querySelector('.addinput');
 const newInputButton = document.querySelector('#js-arrPushButton');
@@ -109,16 +94,14 @@ currentBlock.addEventListener('click', (e) => {
   const target = e.target;
   if (target.tagName == 'LI') target.classList.toggle('selected');
 });
-addInput.addEventListener('change', () => {
-  const ul = currentBlock.querySelector('UL'),
-    newLi = document.createElement('LI');
-  newLi.innerHTML = addInput.value;
-  ul.appendChild(newLi);
-});
 
 newInputButton.addEventListener('click', () => {
   const ul = currentBlock.querySelector('UL'),
     newLi = document.createElement('LI');
-  newLi.innerHTML = addInput.value;
-  ul.appendChild(newLi);
+  if (addInput.value != "") {
+    newLi.innerHTML = addInput.value;
+    ul.appendChild(newLi);
+  } else {
+    alert('заполните инпут');
+  }
 });

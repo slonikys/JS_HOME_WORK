@@ -29,3 +29,7 @@ body {
 li {
   cursor: pointer;
 }
+
+.empty {
+  outline: 2px solid red;
+}
