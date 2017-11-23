@@ -1,0 +1,50 @@
+body {
+  background: linear-gradient(to right, rgba(82, 82, 82, 1) 0%, rgba(87, 87, 87, 1) 35%, rgba(56, 56, 56, 1) 61%, rgba(15, 15, 15, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#525252', endColorstr='#0f0f0f', GradientType=1);
+  color: #b18c8c;
+}
+
+.container, form {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.gallery {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 50px;
+}
+
+.film-card {
+  position: relative;
+  color: #ddd;
+  background-color: #000;
+  text-align: center;
+  border: 3px solid #000;
+  border-radius: 30px;
+}
+
+.film-card__img {
+  width: 100%;
+  height: auto;
+}
+
+.film-card__vote-average {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: #f00;
+  width: 15%;
+  line-height: 30px;
+  border-radius: 0px 0px 11px 0px;
+  -moz-border-radius: 0px 0px 11px 0px;
+  -webkit-border-radius: 0px 0px 11px 0px;
+  border: 0px solid #000000;
+}
+
+.button_Cont {
+  margin: 10px auto;
+}
