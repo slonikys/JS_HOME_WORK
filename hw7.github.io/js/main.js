@@ -11,8 +11,9 @@ const popularUrl = `https://api.themoviedb.org/3/movie/popular?&language=en-US&p
 const latestUrl = `https://api.themoviedb.org/3/movie/latest?language=en-US`;
 const topRatedUrl = `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1`;
 
-const fetchFilms = (url, searchQuery) =>
-  fetch(url + apiKey + `&query=${searchQuery}`)
+const fetchFilms = (url, searchQuery) =>{
+if (searchQuery !=="") {
+  return fetch(url + apiKey + `&query=${searchQuery}`)
   .then(response => {
     if (response.ok) {
       return response.json();
@@ -21,6 +22,9 @@ const fetchFilms = (url, searchQuery) =>
     throw new Error('error while fetching, ' + response.statusText);
   })
   .catch(err => console.log(err));
+} else {
+  alert ('Введите название фильма');
+}};
 
 const getFilmsInfo = films =>
   films.map(elem => {
@@ -36,51 +40,47 @@ const getFilmsInfo = films =>
 const renderGallery = (films, parent) => {
   let htmlCard = '';
   films.forEach(elem => {
+    let overview =elem.overview.slice(0,99);
     htmlCard += `<div class="film-card">
       <img src="https://image.tmdb.org/t/p/w500${elem.poster_path}" alt="film-poster" class="film-card__img">
       <h3 class="film-card__title">${elem.title}</h3>
       <p class="film-card__release-date">${elem.release_date}</p>
-      <p class="film-card__overview">${elem.overview}</p>
+      <p class="film-card__overview">${overview}...</p>
       <div class="film-card__vote-average">${elem.vote_average}</div>
     </div>`;
   });
-
   parent.innerHTML = htmlCard;
 };
 
-
 const renderGalleryLatest = (elem, parent) => {
   let htmlCard = '';
+  let overview =elem.overview.slice(0,99);
   htmlCard += `<div class="film-card">
       <img src="https://image.tmdb.org/t/p/w500${elem.poster_path}" alt="film-poster" class="film-card__img">
       <h3 class="film-card__title">${elem.title}</h3>
       <p class="film-card__release-date">${elem.release_date}</p>
-      <p class="film-card__overview">${elem.overview}</p>
+      <p class="film-card__overview">${overview}...</p>
       <div class="film-card__vote-average">${elem.vote_average}</div>
     </div>`;
   parent.innerHTML = htmlCard;
 };
 
-
-
-
+const fullCycle =(someUrl, someQuery) => {
+  fetchFilms(someUrl, someQuery)
+     .then(data => {
+       const films = getFilmsInfo(data.results);
+       renderGallery(films, gallery);
+    });
+ };
 
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  fetchFilms(queryUrl, input.value)
-    .then(data => {
-      const films = getFilmsInfo(data.results);
-      renderGallery(films, gallery);
-    });
+  fullCycle(queryUrl, input.value);
 });
 
 popularSubmit.addEventListener('click', (evt) => {
   evt.preventDefault();
-  fetchFilms(popularUrl)
-    .then(data => {
-      const films = getFilmsInfo(data.results);
-      renderGallery(films, gallery);
-    });
+  fullCycle(popularUrl);
 });
 latestSubmit.addEventListener('click', (evt) => {
   evt.preventDefault();
@@ -91,9 +91,5 @@ latestSubmit.addEventListener('click', (evt) => {
 });
 topRatedSubmit.addEventListener('click', (evt) => {
   evt.preventDefault();
-  fetchFilms(topRatedUrl)
-    .then(data => {
-      const films = getFilmsInfo(data.results);
-      renderGallery(films, gallery);
-    });
-});
+  fullCycle(topRatedUrl);
+  });
