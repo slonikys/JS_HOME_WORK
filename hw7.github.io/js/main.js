@@ -49,7 +49,7 @@ const renderGallery = (films, parent) => {
   parent.innerHTML = htmlCard;
 };
 
-const renderGalleryLatest = (elem, parent) => {
+const renderLatestFilm = (elem, parent) => {
   let htmlCard = '';
   let overview =elem.overview.slice(0,99);
   htmlCard += `<div class="film-card">
@@ -86,7 +86,7 @@ popularSubmit.addEventListener('click', () => {
 latestSubmit.addEventListener('click', () => {
   fetchFilms(latestUrl)
     .then(data => {
-      renderGalleryLatest(data, gallery);
+      renderLatestFilm(data, gallery);
     });
 });
 topRatedSubmit.addEventListener('click', () => {
