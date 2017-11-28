@@ -76,7 +76,8 @@ form.addEventListener('submit', (evt) => {
   fullCycle(queryUrl, input.value);
   } else {
     alert ('Введите имя фильма !');
-   }
+    return false;
+  }
 });
 
 popularSubmit.addEventListener('click', () => {
