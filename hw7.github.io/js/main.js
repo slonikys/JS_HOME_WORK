@@ -29,7 +29,7 @@ const getFilmsInfo = films =>
       poster_path: elem.poster_path,
       title: elem.title,
       release_date: elem.release_date,
-      overview: elem.overview,
+      overview: elem.overview.slice(0,99),
       vote_average: elem.vote_average,
     };
   });
@@ -51,12 +51,11 @@ const renderGallery = (films, parent) => {
 
 const renderLatestFilm = (elem, parent) => {
   let htmlCard = '';
-  let overview =elem.overview.slice(0,99);
-  htmlCard += `<div class="film-card">
+   htmlCard += `<div class="film-card">
       <img src="https://image.tmdb.org/t/p/w500${elem.poster_path}" alt="film-poster" class="film-card__img">
       <h3 class="film-card__title">${elem.title}</h3>
       <p class="film-card__release-date">${elem.release_date}</p>
-      <p class="film-card__overview">${overview}...</p>
+      <p class="film-card__overview">${elem.overview}...</p>
       <div class="film-card__vote-average">${elem.vote_average}</div>
     </div>`;
   parent.innerHTML = htmlCard;
@@ -91,3 +90,5 @@ latestSubmit.addEventListener('click', () => {
 topRatedSubmit.addEventListener('click', () => {
   fullCycle(topRatedUrl);
   });
+
+  

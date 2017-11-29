@@ -10,6 +10,11 @@ const queryUrl = 'https://api.themoviedb.org/3/search/movie?language=en-US&page=
 const popularUrl = 'https://api.themoviedb.org/3/movie/popular?&language=en-US&page=1';
 const latestUrl = 'https://api.themoviedb.org/3/movie/latest?language=en-US';
 const topRatedUrl = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1';
+const htmlTemplate = document.querySelector('#template').textContent.trim();
+const compiled = _.template(htmlTemplate);
+const lightButton =document.querySelector('.js-Light-button');
+const darkButton =document.querySelector('.js-Dark-button');
+const link = document.querySelector('link');
 
 const fetchFilms = (url, searchQuery) =>
    fetch(url + apiKey + `&query=${searchQuery}`)
@@ -29,36 +34,22 @@ const getFilmsInfo = films =>
       poster_path: elem.poster_path,
       title: elem.title,
       release_date: elem.release_date,
-      overview: elem.overview,
+      overview: elem.overview.slice(0, 99),
       vote_average: elem.vote_average,
     };
   });
 
-const renderGallery = (films, parent) => {
+const renderGallery = (films, parent,template) => {
   let htmlCard = '';
-  films.forEach(elem => {
-    let overview =elem.overview.slice(0,99);
-    htmlCard += `<div class="film-card">
-      <img src="https://image.tmdb.org/t/p/w500${elem.poster_path}" alt="film-poster" class="film-card__img">
-      <h3 class="film-card__title">${elem.title}</h3>
-      <p class="film-card__release-date">${elem.release_date}</p>
-      <p class="film-card__overview">${overview}...</p>
-      <div class="film-card__vote-average">${elem.vote_average}</div>
-    </div>`;
+   films.forEach(elem => {
+    htmlCard +=template(elem);
   });
   parent.innerHTML = htmlCard;
 };
 
-const renderLatestFilm = (elem, parent) => {
+const renderLatestFilm = (elem, parent,template) => {
   let htmlCard = '';
-  let overview =elem.overview.slice(0,99);
-  htmlCard += `<div class="film-card">
-      <img src="https://image.tmdb.org/t/p/w500${elem.poster_path}" alt="film-poster" class="film-card__img">
-      <h3 class="film-card__title">${elem.title}</h3>
-      <p class="film-card__release-date">${elem.release_date}</p>
-      <p class="film-card__overview">${overview}...</p>
-      <div class="film-card__vote-average">${elem.vote_average}</div>
-    </div>`;
+  htmlCard +=template(elem);
   parent.innerHTML = htmlCard;
 };
 
@@ -66,17 +57,16 @@ const fullCycle =(someUrl, someQuery) => {
   fetchFilms(someUrl, someQuery)
      .then(data => {
        const films = getFilmsInfo(data.results);
-       renderGallery(films, gallery);
+       renderGallery(films, gallery,compiled);
     });
  };
 
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
   if (input.value !=="") {
-  fullCycle(queryUrl, input.value);
+    fullCycle(queryUrl, input.value);
   } else {
     alert ('Введите имя фильма !');
-    return false;
   }
 });
 
@@ -86,9 +76,38 @@ popularSubmit.addEventListener('click', () => {
 latestSubmit.addEventListener('click', () => {
   fetchFilms(latestUrl)
     .then(data => {
-      renderLatestFilm(data, gallery);
+      renderLatestFilm(data, gallery,compiled);
     });
 });
 topRatedSubmit.addEventListener('click', () => {
   fullCycle(topRatedUrl);
+  });
+
+  const changeTheme = (theme) => {
+    link.setAttribute('href',`css/${theme}.css`);
+  }
+
+  
+  const saveState = (state) => {
+    try {
+            localStorage.setItem('theme', state);
+    } catch (err) {
+      console.log('save state error: ', err);
+    }
+  };
+  
+  window.addEventListener('load',() => {
+      if (localStorage.getItem('theme') === null) {
+       changeTheme('light-theme');} else {
+    changeTheme(localStorage.getItem('theme'))};
+});
+
+  darkButton.addEventListener('click', () =>{
+    changeTheme('dark-theme');
+    saveState('dark-theme');
+  });
+
+  lightButton.addEventListener('click', () =>{
+    changeTheme('light-theme');
+    saveState('light-theme');
   });
