@@ -57,8 +57,7 @@ const fullCycle =(someUrl, someQuery) => {
   fetchFilms(someUrl, someQuery)
      .then(data => {
        const films = getFilmsInfo(data.results);
-       renderGallery(films, gallery,compiled);
-    });
+       renderGallery(films, gallery,compiled);});
  };
 
 form.addEventListener('submit', (evt) => {
@@ -87,7 +86,7 @@ topRatedSubmit.addEventListener('click', () => {
     link.setAttribute('href',`css/${theme}.css`);
   }
 
-  
+
   const saveState = (state) => {
     try {
             localStorage.setItem('theme', state);
@@ -95,7 +94,7 @@ topRatedSubmit.addEventListener('click', () => {
       console.log('save state error: ', err);
     }
   };
-  
+
   window.addEventListener('load',() => {
       if (localStorage.getItem('theme') === null) {
        changeTheme('light-theme');} else {

@@ -165,13 +165,13 @@ function guessNumber() {
         case 0:
         case 1:
         case 2:
-        break;
+            break;
         case 3:
             againButton.classList.add('two');
             break;
         default:
             againButton.classList.add('two');
-            counterRes.innerHTML = 'Нет попыток играем снова ?' ;
+            counterRes.innerHTML = 'Нет попыток играем снова ?';
     }
 }
 againButton.onclick = function() {
@@ -179,4 +179,3 @@ againButton.onclick = function() {
 };
 guessThisNumber.onclick = (guessNumber);
 
-console.log(someGuessNumber);
