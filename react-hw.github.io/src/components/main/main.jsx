@@ -1,8 +1,8 @@
 import React from 'react';
 import './main.css';
-import Header from '../header/header';
-import Form from './left-section/left';
-import Right from './right-section/right-section';
+import Header from 'components/header';
+import Form from './left-section';
+import RightSection from './right-section';
 
 class Main extends React.Component {
   render() {
@@ -11,7 +11,7 @@ class Main extends React.Component {
         <Header />
         <div className="wrap-flex">
           <Form />
-          <Right />
+          <RightSection />
         </div>
       </div>
     );
