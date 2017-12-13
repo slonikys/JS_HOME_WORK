@@ -1,5 +1,5 @@
 import React from 'react';
-import Select from 'components/main/form-section';
+import Select from 'components/Select';
 
 class Form extends React.Component {
     render () {

@@ -1,8 +1,9 @@
 import React from 'react';
-import './main.css';
-import Header from 'components/header';
-import Form from './left-section';
-import RightSection from './right-section';
+import './style.css';
+import Header from 'components/Header';
+import Form from 'components/Form';
+import RightSection from 'components/Right-section';
+import movies from 'components/Fakedb';
 
 class Main extends React.Component {
   render() {
@@ -11,7 +12,7 @@ class Main extends React.Component {
         <Header />
         <div className="wrap-flex">
           <Form />
-          <RightSection />
+          <RightSection movie={movies}/>
         </div>
       </div>
     );
