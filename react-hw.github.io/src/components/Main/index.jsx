@@ -6,13 +6,25 @@ import RightSection from 'components/Right-section';
 import movies from 'components/Fakedb';
 
 class Main extends React.Component {
+  state = {
+    movies :movies,
+    };
+    _handelFormSubmit = (el) => {
+      this.setState({
+        movies :[...this.state.movies,el]
+      })
+    };
+    _deletMovies = id =>{
+      console.log(id);
+      this.setState({movies:this.state.movies.filter( elem => elem.id!==id)});
+    }
   render() {
-    return (
+        return (
       <div>
         <Header />
         <div className="wrap-flex">
-          <Form />
-          <RightSection movie={movies}/>
+          <Form onFormSubmit={this._handelFormSubmit}/>
+          <RightSection movie={this.state.movies} deletMovies={this._deletMovies}/>
         </div>
       </div>
     );
