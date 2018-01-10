@@ -15,7 +15,6 @@ class Main extends React.Component {
     });
   };
   _deletMovies = id => {
-    console.log(id);
     this.setState({ movies: this.state.movies.filter(elem => elem.id !== id) });
   };
   render() {

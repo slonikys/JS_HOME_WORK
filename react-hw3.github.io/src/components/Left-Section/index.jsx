@@ -1,34 +1,24 @@
 import React from "react";
 import "./style.css";
 import WatchList from "components/Watchlist";
-
+import Form from "components/Form";
+import Buttons from "components/Buttons";
 export default class LeftSection extends React.Component {
   render() {
     const {
-      querySerch,
+      querySearch,
       topRated,
       upcoming,
       popular,
       watch,
       remove
     } = this.props;
-    let input = null;
+    console.log(topRated);
     return (
       <section className="left-section">
-        <form
-          action="#"
-          className="main-form"
-          onSubmit={evt => {
-            evt.preventDefault();
-            querySerch(input.value);
-          }}
-        >
-          <input className="input" type="text" ref={node => (input = node)} />
-        </form>
-        <button onClick={popular}>popular</button>
-        <button onClick={topRated}>Top rated</button>
-        <button onClick={upcoming}>Upcoming</button>
-        <WatchList Watch={watch} removeMovie={remove} />
+        <Form onSubmit={querySearch} />
+        <Buttons Top={topRated} Up={upcoming} Popular={popular} />
+        <WatchList watch={watch} removeMovie={remove} />
       </section>
     );
   }

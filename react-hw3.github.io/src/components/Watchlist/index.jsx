@@ -4,17 +4,16 @@ import "./style.css";
 
 export default class WatchList extends Component {
   render() {
-    const { Watch, removeMovie } = this.props;
-    console.log(Watch);
+    const { watch, removeMovie } = this.props;
     return (
       <div className="watch">
         <h2>Watchlist</h2>
-        {Watch.map(elem => (
+        {watch.map(elem => (
           <WatchCard
             key={elem.id}
             {...elem}
             onClick={() => {
-              removeMovie(elem);
+              removeMovie(elem.id);
             }}
           />
         ))}
