@@ -1,0 +1,12 @@
+.input {
+  display: block;
+  margin: 10px auto;
+  width: 80%;
+}
+.main-form {
+  width: 100%;
+}
+button {
+  margin-right: 5px;
+  margin-left: 5px;
+}

@@ -4,16 +4,15 @@ import "./style.css";
 
 class RightSection extends React.Component {
   render() {
-    const { movie, deletMovies } = this.props;
-
+    const { movies, addMovie } = this.props;
     return (
       <div className="right">
-        {movie.map(elem => (
+        {movies.map(elem => (
           <Card
             key={elem.id}
             {...elem}
-            onDelete={() => {
-              deletMovies(elem.id);
+            onClick={() => {
+              addMovie(elem);
             }}
           />
         ))}
