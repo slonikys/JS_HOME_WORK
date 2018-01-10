@@ -13,5 +13,6 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "homepage": "https://slonikys.github.io/JS_HOME_WORK/react-hw.github.io/build/"
+  "homepage":
+    "https://slonikys.github.io/JS_HOME_WORK/react-hw.github.io/build/"
 }
